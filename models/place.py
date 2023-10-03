@@ -68,4 +68,3 @@ class Place(BaseModel, Base):
             """Adds ids in amenity_ids ."""
             if type(value) == type(Amenity):
                 self.amenity_ids.append(value.id)
-
