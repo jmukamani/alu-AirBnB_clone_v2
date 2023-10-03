@@ -24,7 +24,7 @@ class DBStorage:
         host = os.getenv('HBNB_MYSQL_HOST')
         database = os.getenv('HBNB_MYSQL_DB')
 
-        self.__engine = sqlalchemy.create_engine(
+        self.__engine = create_engine(
             'mysql+mysqldb://{}:{}@{}:3306/{}'
             .format(user,
                     password,
@@ -32,7 +32,7 @@ class DBStorage:
                     database), pool_pre_ping=True)
 
         if os.getenv('HBNB_ENV') == "test":
-            # from models.base_model import Base
+            from models.base_model import Base
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
@@ -90,10 +90,9 @@ class DBStorage:
         from models.review import Review
 
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine,
-                                       expire_on_commit=False)
-        session = scoped_session(session_factory)
-        self.__session = session()
+        Session = scoped_session(
+                 sessionmaker(expire_on_commit=False, bind=self.__engine))
+        self.__session = Session()
 
     def close(self):
         """Close the session"""
