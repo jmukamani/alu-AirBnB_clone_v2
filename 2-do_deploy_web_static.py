@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-#Fabric script that distributes archive to web servers
+"""
+Fabric script that distributes archive to web servers
+"""
 from fabric.api import env, put, run, local
 from os.path import exists, isdir
 import os.path
