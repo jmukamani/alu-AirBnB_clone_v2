@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Fabric script that distributes archive to web servers
+    Fabric script that distributes archive to web servers
 """
 from fabric.api import env, put, run, local
 from os.path import exists, isdir
@@ -15,9 +15,9 @@ env.key_filename = '~/.ssh/id_rsa'
 
 def do_pack():
     """
-    function to compress directory into .tgz archive
-    Return: Success - '.tgz' archive path
-    Failure - None
+        function to compress directory into .tgz archive
+        Return: Success - '.tgz' archive path
+        Failure - None
     """
     now = datetime.now()
     now = now.strftime('%Y%m%d%H%M%S')
@@ -33,7 +33,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """
-    Distributes archive to web servers
+        Distributes archive to web servers
     """
     if not exists(archive_path):
         return False
