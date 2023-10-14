@@ -11,6 +11,24 @@ env.hosts = ['3.80.228.122', '54.242.153.118']
 env.key_filename = '~/.ssh/id_rsa'
 
 
+def do_pack():
+    """
+    function to compress directory into .tgz archive
+    Return: Success - '.tgz' archive path
+    Failure - None
+    """
+    now = datetime.now()
+    now = now.strftime('%Y%m%d%H%M%S')
+    archive_path = 'versions/web_static_' + now + '.tgz'
+
+    local('mkdir -p versions/')
+    result = local('tar -cvzf {} web_static/'.format(archive_path))
+
+    if result.succeeded:
+    return archive_path
+    return None
+
+
 def do_deploy(archive_path):
     """
     Distributes archive to web servers
