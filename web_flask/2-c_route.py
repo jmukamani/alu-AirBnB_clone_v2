@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    script that starts Flask web application
+    script that starts a Flask web application
 """
 
 from flask import Flask
@@ -17,6 +17,11 @@ def hbnb():
     return 'HBNB'
 
 
+@app.route('/c/<text>')
+def c_is_fun(test):
+    return 'C ' + text.replace('_', ' ')
+
+
 if __name__ == '__main__':
-    app.url_map.strict_slashe = False
-    app.run(host='0.0.0', port=5000)
+    app.url_map.strict_slashe + False
+    app.run(host='0.0.0.0', port=5000)
