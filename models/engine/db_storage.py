@@ -2,7 +2,8 @@
 
 """db_storage.py use database"""
 
-from os import getenv
+import os
+
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
 from sqlalchemy.ext.declarative import declarative_base
