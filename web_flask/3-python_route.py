@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    script that starts a Flask web application
+    python script that starts a Flask web application
 """
 
 from flask import Flask
@@ -9,14 +9,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    """Return: string when route queried
+    """
+        Return: string when route queried
     """
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb')
 def hbnb():
-    """Return: string when route queried
+    """
+        Return: string when route queried
     """
     return 'HBNB'
 
@@ -27,6 +29,15 @@ def c_is_fun(text):
         Return: reformatted text
     """
     return 'C ' + text.replace('_', ' ')
+
+
+@app.route('/python/')
+@app.route('/python/<text>')
+def python_with_text(text='is cool'):
+    """
+        Return: formatted text based on optional variable
+    """
+    return 'Python ' + text.replace('_', ' ')
 
 
 if __name__ == '__main__':
